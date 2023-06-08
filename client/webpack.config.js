@@ -15,19 +15,21 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      // Webpack plugin that generates our html file and injects our bundles. 
+      // Webpack plugin that generates our html file and injects our bundles for use within a browser. 
       new HtmlWebpackPlugin({
         template: './index.html',
         title: 'Just Another Text Editor (JATE)'
       }),
      
       // Injects our custom service worker
+      // "A service worker is a JavaScript asset that acts as a proxy between web browsers and web servers. They aim to improve reliability by providing offline access, as well as boost page performance" - Chrome Developers 
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
 
       // Creates a manifest.json file.
+      // The manifest.json file is used for telling the browser about the web application. "A typical manifest file includes the app name, the icons the app should use, and the URL that should be opened when the app is launched, among other things." - web.dev
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -58,6 +60,7 @@ module.exports = () => {
           test: /\.m?js$/,
           exclude: /node_modules/,
           // We use babel-loader in order to use ES6.
+          // It is useful for making an app backwards compatible for older browsers. 
           use: {
             loader: 'babel-loader',
             options: {

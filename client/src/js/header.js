@@ -1,3 +1,4 @@
+// This is the text that initially displays when the page loads. 
 const header = `
 /*
        _____  ____________
