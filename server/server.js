@@ -1,8 +1,10 @@
+// import express
 const express = require('express');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// middleware that the app uses
 app.use(express.static('../client/dist'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
